@@ -126,7 +126,8 @@
           localParams: this.localParams,
           servename: this.servename,
           querycount: this.querycount,
-          sqltablename: this.sqltablename
+          sqltablename: this.sqltablename,
+          type: this.type
         })
         return true
       },
@@ -158,7 +159,8 @@
           localParams: this.localParams,
           servename: this.servename,
           querycount: this.querycount,
-          sqltablename: this.sqltablename
+          sqltablename: this.sqltablename,
+          type: this.type
         })
       }
     },
@@ -178,6 +180,7 @@
         this.servename = o.params.servename || ''
         this.querycount = o.params.querycount || ''
         this.sqltablename = o.params.sqltablename || ''
+        this.type = o.params.type || ''
         // backfill localParams
         let localParams = o.params.localParams || []
         if (localParams.length) {
@@ -204,7 +207,8 @@
           localParams: this.localParams,
           servename: this.servename,
           querycount: this.querycount,
-          sqltablename: this.sqltablename
+          sqltablename: this.sqltablename,
+          type: this.type
         }
       }
     },
