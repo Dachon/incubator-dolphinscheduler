@@ -35,7 +35,7 @@ const router = new Router({
       name: 'home',
       component: resolve => require(['../pages/home/index'], resolve),
       meta: {
-        title: `${i18n.$t('Home')} - DolphinScheduler`
+        title: `${i18n.$t('Home')} - uniwill计算框架`
       }
     },
     {
