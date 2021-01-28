@@ -308,6 +308,14 @@ const tasksType = {
   CONDITIONS: {
     desc: 'CONDITIONS',
     color: '#E46F13'
+  },
+  COLLECTDATA: {
+    desc: 'COLLECTDATA',
+    color: '#06a125'
+  },
+  PUBLISHINFO: {
+    desc: 'PUBLISHINFO',
+    color: '#06a125'
   }
 }
 
