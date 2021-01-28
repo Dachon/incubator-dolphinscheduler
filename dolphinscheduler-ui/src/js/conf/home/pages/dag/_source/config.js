@@ -253,46 +253,46 @@ const tasksState = {
  * @color color (tree and gantt)
  */
 const tasksType = {
-  SHELL: {
-    desc: 'SHELL',
-    color: '#646464'
-  },
-  WATERDROP: {
-    desc: 'WATERDROP',
-    color: '#646465'
-  },
-  SUB_PROCESS: {
-    desc: 'SUB_PROCESS',
-    color: '#0097e0'
-  },
-  PROCEDURE: {
-    desc: 'PROCEDURE',
-    color: '#525CCD'
-  },
+  // SHELL: {
+  //   desc: 'SHELL',
+  //   color: '#646464'
+  // },
+  // WATERDROP: {
+  //   desc: 'WATERDROP',
+  //   color: '#646465'
+  // },
+  // SUB_PROCESS: {
+  //   desc: 'SUB_PROCESS',
+  //   color: '#0097e0'
+  // },
+  // PROCEDURE: {
+  //   desc: 'PROCEDURE',
+  //   color: '#525CCD'
+  // },
   SQL: {
     desc: 'SQL',
     color: '#7A98A1'
   },
-  SPARK: {
-    desc: 'SPARK',
-    color: '#E46F13'
-  },
-  FLINK: {
-    desc: 'FLINK',
-    color: '#E46F13'
-  },
-  MR: {
-    desc: 'MapReduce',
-    color: '#A0A5CC'
-  },
-  PYTHON: {
-    desc: 'PYTHON',
-    color: '#FED52D'
-  },
-  DEPENDENT: {
-    desc: 'DEPENDENT',
-    color: '#2FBFD8'
-  },
+  // SPARK: {
+  //   desc: 'SPARK',
+  //   color: '#E46F13'
+  // },
+  // FLINK: {
+  //   desc: 'FLINK',
+  //   color: '#E46F13'
+  // },
+  // MR: {
+  //   desc: 'MapReduce',
+  //   color: '#A0A5CC'
+  // },
+  // PYTHON: {
+  //   desc: 'PYTHON',
+  //   color: '#FED52D'
+  // },
+  // DEPENDENT: {
+  //   desc: 'DEPENDENT',
+  //   color: '#2FBFD8'
+  // },
   HTTP: {
     desc: 'HTTP',
     color: '#E46F13'
@@ -301,14 +301,14 @@ const tasksType = {
     desc: 'DataX',
     color: '#1fc747'
   },
-  SQOOP: {
-    desc: 'SQOOP',
-    color: '#E46F13'
-  },
-  CONDITIONS: {
-    desc: 'CONDITIONS',
-    color: '#E46F13'
-  },
+  // SQOOP: {
+  //   desc: 'SQOOP',
+  //   color: '#E46F13'
+  // },
+  // CONDITIONS: {
+  //   desc: 'CONDITIONS',
+  //   color: '#E46F13'
+  // },
   COLLECTDATA: {
     desc: 'COLLECTDATA',
     color: '#06a125'
