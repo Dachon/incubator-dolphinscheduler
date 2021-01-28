@@ -137,7 +137,8 @@
           sql: editor.getValue(),
           mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
-          sqlType: this.sqlType
+          sqlType: this.sqlType,
+          type: this.type
         })
         return true
       },
@@ -204,7 +205,8 @@
           sql: editor ? editor.getValue() : '',
           mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
-          sqlType: this.sqlType
+          sqlType: this.sqlType,
+          type: this.type
         })
       },
       _destroyEditor () {
@@ -236,7 +238,8 @@
         this.sql = o.params.sql || ''
         this.mdbtablename = o.params.mdbtablename || ''
         this.datasource = o.params.datasource || ''
-        this.sqlType = o.params.sqlType
+        this.sqlType = o.params.sqlType || ''
+        this.type = o.params.type || ''
       }
       // read tasks from cache
       if (!_.some(this.store.state.dag.cacheTasks, { id: this.createNodeId }) &&
@@ -264,7 +267,9 @@
         return {
           mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
-          sqlType: this.sqlType
+          sqlType: this.sqlType,
+          sql: this.sql,
+          type: this.type
         }
       }
     },
