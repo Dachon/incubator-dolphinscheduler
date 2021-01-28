@@ -276,6 +276,18 @@
           :backfill-item="backfillItem"
           :pre-node="nodeData.preNode">
         </m-conditions>
+        <!-- 加入CollectData组件-->
+        <m-collect-data  v-if="nodeData.taskType === 'COLLECTDATA'"
+        ref="COLLECTDATA"
+        @on-params="_onParams"
+        :backfill-item="backfillItem"
+        ></m-collect-data>
+        <!-- 加入PublichInfo组件-->
+        <m-publish-info v-if="nodeData.taskType === 'PUBLISHINFO'"
+        ref="PUBLISHINFO"
+        @on-params="_onParams"
+        :backfill-item="backfillItem">
+        </m-publish-info>
         <!-- Pre-tasks in workflow -->
         <m-pre-tasks
           v-if="['SHELL', 'SUB_PROCESS'].indexOf(nodeData.taskType) > -1"
@@ -321,7 +333,8 @@
   import disabledState from '@/module/mixin/disabledState'
   import { isNameExDag, rtBantpl } from './../plugIn/util'
   import mPriority from '@/module/components/priority/priority'
-
+  import mCollectData from './tasks/collectdata.vue'
+  import mPublishInfo from './tasks/publishinfo.vue'
   export default {
     name: 'form-model',
     data () {
@@ -687,7 +700,6 @@
       JSP.removePaste()
       // Backfill data
       let taskList = this.store.state.dag.tasks
-
       // fillback use cacheTasks
       let cacheTasks = this.store.state.dag.cacheTasks
       let o = {}
@@ -816,7 +828,9 @@
       mDependentTimeout,
       mPriority,
       mWorkerGroups,
-      mPreTasks
+      mPreTasks,
+      mCollectData,
+      mPublishInfo
     }
   }
 </script>
