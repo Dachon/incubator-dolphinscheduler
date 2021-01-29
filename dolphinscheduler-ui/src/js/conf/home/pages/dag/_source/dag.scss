@@ -71,6 +71,13 @@
     position: relative;
     z-index: 9;
   }
+  .icon-names{
+    position: absolute;
+    white-space: nowrap;
+    margin-left: -11px;
+    font-size: 5px;
+    width: 60px;
+  }
   .icos-SHELL {
     background: url("../img/toolbar_SHELL.png") no-repeat 50% 50%;
   }
@@ -141,10 +148,10 @@
       overflow: hidden;
       padding: 8px 11px 0 11px;
       .bar-box {
-        width: 36px;
+        width: 40px;
         height: 36px;
         float: left;
-        margin-bottom: 3px;
+        margin-bottom: 20px;
         border-radius: 3px;
         .disabled {
           .icos {
@@ -573,5 +580,3 @@ svg path:hover {
     width: 628px;
     left: auto;
 }
-
-
