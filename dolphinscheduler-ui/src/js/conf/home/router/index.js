@@ -35,7 +35,7 @@ const router = new Router({
       name: 'home',
       component: resolve => require(['../pages/home/index'], resolve),
       meta: {
-        title: `${i18n.$t('Home')} - uniwill计算框架`
+        title: `${i18n.$t('Home')}`
       }
     },
     {
@@ -521,7 +521,7 @@ router.beforeEach((to, from, next) => {
   const $body = $('body')
   $body.find('.tooltip.fade.top.in').remove()
   if (to.meta.title) {
-    document.title = `${to.meta.title} - DolphinScheduler`
+    document.title = `${to.meta.title} - uniwill计算框架`
   }
   next()
 })
