@@ -25,8 +25,12 @@
              :key="v"
              v-for="(item,v) in tasksTypeList"
              @mousedown="_getDagId(v)">
+
           <div data-toggle="tooltip" :title="item.desc">
             <div class="icos" :class="'icos-' + v" ></div>
+          </div>
+          <div class="icon-names">
+            <div style="text-align: center;">{{item.iconname}}</div>
           </div>
         </div>
       </div>
