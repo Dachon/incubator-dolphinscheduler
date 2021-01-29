@@ -91,7 +91,7 @@
         // 关系表存入的服务名
         servename: '',
         // 三方调用服务时返回的数据条数
-        querycount: '',
+        querycount: '1',
         // 三方SQLtable表名
         sqltablename: '',
         item: '',
