@@ -48,8 +48,8 @@
       <div slot="text">{{$t('queryCount')}}</div>
       <div slot="content">
        <el-radio-group v-model="querycount">
-          <el-radio :label="'单条'">{{$t('SingleCount')}}</el-radio>
-          <el-radio :label="'全部'">{{$t('AllCount')}}</el-radio>
+          <el-radio :label="'0'" >{{$t('SingleCount')}}</el-radio>
+          <el-radio :label="'1'">{{$t('AllCount')}}</el-radio>
         </el-radio-group>
       </div>
     </m-list-box>
