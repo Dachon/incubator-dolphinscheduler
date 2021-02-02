@@ -1,308 +1,316 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 <template>
-  <div class="form-model-wrapper" v-clickoutside="_handleClose">
-    <div class="title-box">
-      <span class="name">{{$t('Current node settings')}}</span>
-      <span class="go-subtask">
-        <!-- Component can't pop up box to do component processing -->
-        <m-log :item="backfillItem">
-          <template slot="history"><a href="javascript:" @click="_seeHistory" ><em class="ansicon el-icon-alarm-clock"></em><em>{{$t('View history')}}</em></a></template>
-          <template slot="log"><a href="javascript:"><em class="ansicon el-icon-document"></em><em>{{$t('View log')}}</em></a></template>
-        </m-log>
-        <a href="javascript:" @click="_goSubProcess" v-if="_isGoSubProcess"><em class="ansicon ri-node-tree"></em><em>{{$t('Enter this child node')}}</em></a>
-      </span>
-    </div>
-    <div class="content-box" v-if="isContentBox">
-      <div class="form-model">
-        <!-- Node name -->
-        <div class="clearfix list">
-          <div class="text-box"><span>{{$t('Node name')}}</span></div>
-          <div class="cont-box">
-            <label class="label-box">
-              <el-input
-                type="text"
-                v-model="name"
-                size="small"
-                :disabled="isDetails"
-                :placeholder="$t('Please enter name (required)')"
-                maxlength="100"
-                @blur="_verifName()">
-              </el-input>
-            </label>
-          </div>
-        </div>
-
-        <!-- Running sign -->
-        <div class="clearfix list">
-          <div class="text-box"><span>{{$t('Run flag')}}</span></div>
-          <div class="cont-box">
-            <label class="label-box">
-              <el-radio-group v-model="runFlag" size="small">
-                <el-radio :label="'NORMAL'" :disabled="isDetails">{{$t('Normal')}}</el-radio>
-                <el-radio :label="'FORBIDDEN'" :disabled="isDetails">{{$t('Prohibition execution')}}</el-radio>
-              </el-radio-group>
-            </label>
-          </div>
-        </div>
-
-        <!-- description -->
-        <div class="clearfix list">
-          <div class="text-box">
-            <span>{{$t('Description')}}</span>
-          </div>
-          <div class="cont-box">
-            <label class="label-box">
-              <el-input
-                :rows="2"
-                type="textarea"
-                :disabled="isDetails"
-                v-model="description"
-                :placeholder="$t('Please enter description')">
-              </el-input>
-            </label>
-          </div>
-        </div>
-
-        <!-- Task priority -->
-        <div class="clearfix list">
-          <div class="text-box">
-            <span>{{$t('Task priority')}}</span>
-          </div>
-          <div class="cont-box">
-            <span class="label-box" style="width: 193px;display: inline-block;">
-              <m-priority v-model="taskInstancePriority"></m-priority>
+    <el-tabs class="form-model-wrapper"  v-model="activeName" type="card" >
+      <el-tab-pane :label="$t('Basic settings')" name="first">
+        <div  v-clickoutside="_handleClose">
+         <!-- <div class="title-box"> -->
+            <!-- <span class="name">{{$t('Current node settings')}}</span> -->
+            <span class="go-subtask">
+              <m-log :item="backfillItem">
+                <template slot="history"><a href="javascript:" @click="_seeHistory" ><em class="ansicon el-icon-alarm-clock"></em><em>{{$t('View history')}}</em></a></template>
+                <template slot="log"><a href="javascript:"><em class="ansicon el-icon-document"></em><em>{{$t('View log')}}</em></a></template>
+              </m-log>
+              <a href="javascript:" @click="_goSubProcess" v-if="_isGoSubProcess"><em class="ansicon ri-node-tree"></em><em>{{$t('Enter this child node')}}</em></a>
             </span>
-            <span class="text-b">{{$t('Worker group')}}</span>
-            <m-worker-groups v-model="workerGroup"></m-worker-groups>
+          <!-- </div> -->
+          <div class="content-box" v-if="isContentBox">
+            <div class="form-model">
+              <!-- Node name -->
+              <div class="clearfix list">
+                <div class="text-box"><span>{{$t('Node name')}}</span></div>
+                <div class="cont-box">
+                  <label class="label-box">
+                    <el-input
+                      type="text"
+                      v-model="name"
+                      size="small"
+                      :disabled="isDetails"
+                      :placeholder="$t('Please enter name (required)')"
+                      maxlength="100"
+                      @blur="_verifName()">
+                    </el-input>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Running sign -->
+              <div class="clearfix list">
+                <div class="text-box"><span>{{$t('Run flag')}}</span></div>
+                <div class="cont-box">
+                  <label class="label-box">
+                    <el-radio-group v-model="runFlag" size="small">
+                      <el-radio :label="'NORMAL'" :disabled="isDetails">{{$t('Normal')}}</el-radio>
+                      <el-radio :label="'FORBIDDEN'" :disabled="isDetails">{{$t('Prohibition execution')}}</el-radio>
+                    </el-radio-group>
+                  </label>
+                </div>
+              </div>
+
+              <!-- description -->
+              <div class="clearfix list">
+                <div class="text-box">
+                  <span>{{$t('Description')}}</span>
+                </div>
+                <div class="cont-box">
+                  <label class="label-box">
+                    <el-input
+                      :rows="2"
+                      type="textarea"
+                      :disabled="isDetails"
+                      v-model="description"
+                      :placeholder="$t('Please enter description')">
+                    </el-input>
+                  </label>
+                </div>
+              </div>
+              <!-- shell node -->
+              <m-shell
+                v-if="nodeData.taskType === 'SHELL'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="SHELL"
+                :backfill-item="backfillItem">
+              </m-shell>
+              <!-- waterdrop node -->
+              <m-waterdrop
+                v-if="nodeData.taskType === 'WATERDROP'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="WATERDROP"
+                :backfill-item="backfillItem">
+              </m-waterdrop>
+              <!-- sub_process node -->
+              <m-sub-process
+                v-if="nodeData.taskType === 'SUB_PROCESS'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                @on-set-process-name="_onSetProcessName"
+                ref="SUB_PROCESS"
+                :backfill-item="backfillItem">
+              </m-sub-process>
+              <!-- procedure node -->
+              <m-procedure
+                v-if="nodeData.taskType === 'PROCEDURE'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="PROCEDURE"
+                :backfill-item="backfillItem">
+              </m-procedure>
+              <!-- sql node -->
+              <m-sql
+                v-if="nodeData.taskType === 'SQL'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="SQL"
+                :create-node-id="nodeData.id"
+                :backfill-item="backfillItem">
+              </m-sql>
+              <!-- spark node -->
+              <m-spark
+                v-if="nodeData.taskType === 'SPARK'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="SPARK"
+                :backfill-item="backfillItem">
+              </m-spark>
+              <m-flink
+                v-if="nodeData.taskType === 'FLINK'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="FLINK"
+                :backfill-item="backfillItem">
+              </m-flink>
+              <!-- mr node -->
+              <m-mr
+                v-if="nodeData.taskType === 'MR'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="MR"
+                :backfill-item="backfillItem">
+              </m-mr>
+              <!-- python node -->
+              <m-python
+                v-if="nodeData.taskType === 'PYTHON'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="PYTHON"
+                :backfill-item="backfillItem">
+              </m-python>
+              <!-- dependent node -->
+              <m-dependent
+                v-if="nodeData.taskType === 'DEPENDENT'"
+                @on-dependent="_onDependent"
+                @on-cache-dependent="_onCacheDependent"
+                ref="DEPENDENT"
+                :backfill-item="backfillItem">
+              </m-dependent>
+              <m-http
+                v-if="nodeData.taskType === 'HTTP'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="HTTP"
+                :backfill-item="backfillItem">
+              </m-http>
+              <m-datax
+                v-if="nodeData.taskType === 'DATAX'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="DATAX"
+                :backfill-item="backfillItem">
+              </m-datax>
+              <m-sqoop
+                v-if="nodeData.taskType === 'SQOOP'"
+                @on-params="_onParams"
+                @on-cache-params="_onCacheParams"
+                ref="SQOOP"
+                :backfill-item="backfillItem">
+              </m-sqoop>
+              <m-conditions
+                v-if="nodeData.taskType === 'CONDITIONS'"
+                ref="CONDITIONS"
+                @on-dependent="_onDependent"
+                @on-cache-dependent="_onCacheDependent"
+                :backfill-item="backfillItem"
+                :pre-node="nodeData.preNode">
+              </m-conditions>
+              <!-- 加入CollectData组件-->
+              <m-collect-data  v-if="nodeData.taskType === 'COLLECTDATA'"
+              ref="COLLECTDATA"
+              @on-params="_onParams"
+              :backfill-item="backfillItem"
+              ></m-collect-data>
+              <!-- 加入PublichInfo组件-->
+              <m-publish-info v-if="nodeData.taskType === 'SERVICEPUBLISH'"
+              ref="SERVICEPUBLISH"
+              @on-params="_onParams"
+              :backfill-item="backfillItem">
+              </m-publish-info>
+              <!-- Pre-tasks in workflow -->
+              <m-pre-tasks
+                v-if="['SHELL', 'SUB_PROCESS'].indexOf(nodeData.taskType) > -1"
+                @on-pre-tasks="_onPreTasks"
+                ref="PRE_TASK"
+                :backfill-item="backfillItem"></m-pre-tasks>
+            </div>
+          </div>
+          <div class="bottom-box">
+            <div class="submit" style="background: #fff;">
+              <el-button type="text" size="small" id="cancelBtn"> {{$t('Cancel')}} </el-button>
+              <el-button type="primary" size="small" round :loading="spinnerLoading" @click="ok()" :disabled="isDetails">{{spinnerLoading ? 'Loading...' : $t('Confirm add')}} </el-button>
+            </div>
           </div>
         </div>
-
-        <!-- Number of failed retries -->
-        <div class="clearfix list" v-if="nodeData.taskType !== 'SUB_PROCESS'">
-          <div class="text-box">
-            <span>{{$t('Number of failed retries')}}</span>
-          </div>
-          <div class="cont-box">
-            <m-select-input v-model="maxRetryTimes" :list="[0,1,2,3,4]"></m-select-input>
-            <span>({{$t('Times')}})</span>
-            <span class="text-b">{{$t('Failed retry interval')}}</span>
-            <m-select-input v-model="retryInterval" :list="[1,10,30,60,120]"></m-select-input>
-            <span>({{$t('Minute')}})</span>
-          </div>
-        </div>
-
-        <!-- Delay execution time -->
-        <div class="clearfix list" v-if="nodeData.taskType !== 'SUB_PROCESS' && nodeData.taskType !== 'CONDITIONS' && nodeData.taskType !== 'DEPENDENT'">
-          <div class="text-box">
-            <span>{{$t('Delay execution time')}}</span>
-          </div>
-          <div class="cont-box">
-            <m-select-input v-model="delayTime" :list="[0,1,5,10]"></m-select-input>
-            <span>({{$t('Minute')}})</span>
-          </div>
-        </div>
-
-        <!-- Branch flow -->
-        <div class="clearfix list" v-if="nodeData.taskType === 'CONDITIONS'">
-          <div class="text-box">
-            <span>{{$t('State')}}</span>
-          </div>
-          <div class="cont-box">
-            <span class="label-box" style="width: 193px;display: inline-block;">
-              <el-select style="width: 157px;" size="small" v-model="successNode" :disabled="true">
-                <el-option v-for="item in stateList" :key="item.value" :value="item.value" :label="item.label"></el-option>
-              </el-select>
+      </el-tab-pane>
+      <el-tab-pane :label="$t('Advanced configuration')" name="second"><div  v-clickoutside="_handleClose">
+         <!-- <div class="title-box"> -->
+            <!-- <span class="name">{{$t('Current node settings')}}</span> -->
+            <span class="go-subtask">
+              <m-log :item="backfillItem">
+                <template slot="history"><a href="javascript:" @click="_seeHistory" ><em class="ansicon el-icon-alarm-clock"></em><em>{{$t('View history')}}</em></a></template>
+                <template slot="log"><a href="javascript:"><em class="ansicon el-icon-document"></em><em>{{$t('View log')}}</em></a></template>
+              </m-log>
+              <a href="javascript:" @click="_goSubProcess" v-if="_isGoSubProcess"><em class="ansicon ri-node-tree"></em><em>{{$t('Enter this child node')}}</em></a>
             </span>
-            <span class="text-b" style="padding-left: 38px">{{$t('Branch flow')}}</span>
-            <el-select style="width: 157px;" size="small" v-model="successBranch" clearable>
-              <el-option v-for="item in nodeData.rearList" :key="item.value" :value="item.value" :label="item.label"></el-option>
-            </el-select>
-          </div>
-        </div>
-        <div class="clearfix list" v-if="nodeData.taskType === 'CONDITIONS'">
-          <div class="text-box">
-            <span>{{$t('State')}}</span>
-          </div>
-          <div class="cont-box">
-            <span class="label-box" style="width: 193px;display: inline-block;">
-              <el-select style="width: 157px;" size="small" v-model="failedNode" :disabled="true">
-                <el-option v-for="item in stateList" :key="item.value" :value="item.value" :label="item.label"></el-option>
-              </el-select>
-            </span>
-            <span class="text-b" style="padding-left: 38px">{{$t('Branch flow')}}</span>
-            <el-select style="width: 157px;" size="small" v-model="failedBranch" clearable>
-              <el-option v-for="item in nodeData.rearList" :key="item.value" :value="item.value" :label="item.label"></el-option>
-            </el-select>
-          </div>
-        </div>
+          <!-- </div> -->
+          <div class="content-box" v-if="isContentBox">
+            <div class="form-model">
+              <!-- Task priority -->
+              <div class="clearfix list">
+                <div class="text-box">
+                  <span>{{$t('Task priority')}}</span>
+                </div>
+                <div class="cont-box">
+                  <span class="label-box" style="width: 193px;display: inline-block;">
+                    <m-priority v-model="taskInstancePriority"></m-priority>
+                  </span>
+                  <span class="text-b">{{$t('Worker group')}}</span>
+                  <m-worker-groups v-model="workerGroup"></m-worker-groups>
+                </div>
+              </div>
 
-        <!-- Task timeout alarm -->
-        <m-timeout-alarm
-          v-if="nodeData.taskType !== 'DEPENDENT'"
-          ref="timeout"
-          :backfill-item="backfillItem"
-          @on-timeout="_onTimeout">
-        </m-timeout-alarm>
-        <!-- Dependent timeout alarm -->
-        <m-dependent-timeout
-          v-if="nodeData.taskType === 'DEPENDENT'"
-          ref="dependentTimeout"
-          :backfill-item="backfillItem"
-          @on-timeout="_onDependentTimeout">
-        </m-dependent-timeout>
+              <!-- Number of failed retries -->
+              <div class="clearfix list" v-if="nodeData.taskType !== 'SUB_PROCESS'">
+                <div class="text-box">
+                  <span>{{$t('Number of failed retries')}}</span>
+                </div>
+                <div class="cont-box">
+                  <m-select-input v-model="maxRetryTimes" :list="[0,1,2,3,4]"></m-select-input>
+                  <span>({{$t('Times')}})</span>
+                  <span class="text-b">{{$t('Failed retry interval')}}</span>
+                  <m-select-input v-model="retryInterval" :list="[1,10,30,60,120]"></m-select-input>
+                  <span>({{$t('Minute')}})</span>
+                </div>
+              </div>
 
-        <!-- shell node -->
-        <m-shell
-          v-if="nodeData.taskType === 'SHELL'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="SHELL"
-          :backfill-item="backfillItem">
-        </m-shell>
-        <!-- waterdrop node -->
-        <m-waterdrop
-          v-if="nodeData.taskType === 'WATERDROP'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="WATERDROP"
-          :backfill-item="backfillItem">
-        </m-waterdrop>
-        <!-- sub_process node -->
-        <m-sub-process
-          v-if="nodeData.taskType === 'SUB_PROCESS'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          @on-set-process-name="_onSetProcessName"
-          ref="SUB_PROCESS"
-          :backfill-item="backfillItem">
-        </m-sub-process>
-        <!-- procedure node -->
-        <m-procedure
-          v-if="nodeData.taskType === 'PROCEDURE'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="PROCEDURE"
-          :backfill-item="backfillItem">
-        </m-procedure>
-        <!-- sql node -->
-        <m-sql
-          v-if="nodeData.taskType === 'SQL'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="SQL"
-          :create-node-id="nodeData.id"
-          :backfill-item="backfillItem">
-        </m-sql>
-        <!-- spark node -->
-        <m-spark
-          v-if="nodeData.taskType === 'SPARK'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="SPARK"
-          :backfill-item="backfillItem">
-        </m-spark>
-        <m-flink
-          v-if="nodeData.taskType === 'FLINK'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="FLINK"
-          :backfill-item="backfillItem">
-        </m-flink>
-        <!-- mr node -->
-        <m-mr
-          v-if="nodeData.taskType === 'MR'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="MR"
-          :backfill-item="backfillItem">
-        </m-mr>
-        <!-- python node -->
-        <m-python
-          v-if="nodeData.taskType === 'PYTHON'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="PYTHON"
-          :backfill-item="backfillItem">
-        </m-python>
-        <!-- dependent node -->
-        <m-dependent
-          v-if="nodeData.taskType === 'DEPENDENT'"
-          @on-dependent="_onDependent"
-          @on-cache-dependent="_onCacheDependent"
-          ref="DEPENDENT"
-          :backfill-item="backfillItem">
-        </m-dependent>
-        <m-http
-          v-if="nodeData.taskType === 'HTTP'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="HTTP"
-          :backfill-item="backfillItem">
-        </m-http>
-        <m-datax
-          v-if="nodeData.taskType === 'DATAX'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="DATAX"
-          :backfill-item="backfillItem">
-        </m-datax>
-        <m-sqoop
-          v-if="nodeData.taskType === 'SQOOP'"
-          @on-params="_onParams"
-          @on-cache-params="_onCacheParams"
-          ref="SQOOP"
-          :backfill-item="backfillItem">
-        </m-sqoop>
-        <m-conditions
-          v-if="nodeData.taskType === 'CONDITIONS'"
-          ref="CONDITIONS"
-          @on-dependent="_onDependent"
-          @on-cache-dependent="_onCacheDependent"
-          :backfill-item="backfillItem"
-          :pre-node="nodeData.preNode">
-        </m-conditions>
-        <!-- 加入CollectData组件-->
-        <m-collect-data  v-if="nodeData.taskType === 'COLLECTDATA'"
-        ref="COLLECTDATA"
-        @on-params="_onParams"
-        :backfill-item="backfillItem"
-        ></m-collect-data>
-        <!-- 加入PublichInfo组件-->
-        <m-publish-info v-if="nodeData.taskType === 'PUBLISHINFO'"
-        ref="PUBLISHINFO"
-        @on-params="_onParams"
-        :backfill-item="backfillItem">
-        </m-publish-info>
-        <!-- Pre-tasks in workflow -->
-        <m-pre-tasks
-          v-if="['SHELL', 'SUB_PROCESS'].indexOf(nodeData.taskType) > -1"
-          @on-pre-tasks="_onPreTasks"
-          ref="PRE_TASK"
-          :backfill-item="backfillItem"></m-pre-tasks>
-      </div>
-    </div>
-    <div class="bottom-box">
-      <div class="submit" style="background: #fff;">
-        <el-button type="text" size="small" id="cancelBtn"> {{$t('Cancel')}} </el-button>
-        <el-button type="primary" size="small" round :loading="spinnerLoading" @click="ok()" :disabled="isDetails">{{spinnerLoading ? 'Loading...' : $t('Confirm add')}} </el-button>
-      </div>
-    </div>
-  </div>
+              <!-- Delay execution time -->
+              <div class="clearfix list" v-if="nodeData.taskType !== 'SUB_PROCESS' && nodeData.taskType !== 'CONDITIONS' && nodeData.taskType !== 'DEPENDENT'">
+                <div class="text-box">
+                  <span>{{$t('Delay execution time')}}</span>
+                </div>
+                <div class="cont-box">
+                  <m-select-input v-model="delayTime" :list="[0,1,5,10]"></m-select-input>
+                  <span>({{$t('Minute')}})</span>
+                </div>
+              </div>
+
+              <!-- Branch flow -->
+              <div class="clearfix list" v-if="nodeData.taskType === 'CONDITIONS'">
+                <div class="text-box">
+                  <span>{{$t('State')}}</span>
+                </div>
+                <div class="cont-box">
+                  <span class="label-box" style="width: 193px;display: inline-block;">
+                    <el-select style="width: 157px;" size="small" v-model="successNode" :disabled="true">
+                      <el-option v-for="item in stateList" :key="item.value" :value="item.value" :label="item.label"></el-option>
+                    </el-select>
+                  </span>
+                  <span class="text-b" style="padding-left: 38px">{{$t('Branch flow')}}</span>
+                  <el-select style="width: 157px;" size="small" v-model="successBranch" clearable>
+                    <el-option v-for="item in nodeData.rearList" :key="item.value" :value="item.value" :label="item.label"></el-option>
+                  </el-select>
+                </div>
+              </div>
+              <div class="clearfix list" v-if="nodeData.taskType === 'CONDITIONS'">
+                <div class="text-box">
+                  <span>{{$t('State')}}</span>
+                </div>
+                <div class="cont-box">
+                  <span class="label-box" style="width: 193px;display: inline-block;">
+                    <el-select style="width: 157px;" size="small" v-model="failedNode" :disabled="true">
+                      <el-option v-for="item in stateList" :key="item.value" :value="item.value" :label="item.label"></el-option>
+                    </el-select>
+                  </span>
+                  <span class="text-b" style="padding-left: 38px">{{$t('Branch flow')}}</span>
+                  <el-select style="width: 157px;" size="small" v-model="failedBranch" clearable>
+                    <el-option v-for="item in nodeData.rearList" :key="item.value" :value="item.value" :label="item.label"></el-option>
+                  </el-select>
+                </div>
+              </div>
+
+              <!-- Task timeout alarm -->
+              <m-timeout-alarm
+                v-if="nodeData.taskType !== 'DEPENDENT'"
+                ref="timeout"
+                :backfill-item="backfillItem"
+                @on-timeout="_onTimeout">
+              </m-timeout-alarm>
+              <!-- Dependent timeout alarm -->
+              <m-dependent-timeout
+                v-if="nodeData.taskType === 'DEPENDENT'"
+                ref="dependentTimeout"
+                :backfill-item="backfillItem"
+                @on-timeout="_onDependentTimeout">
+              </m-dependent-timeout>
+            </div>
+          </div>
+          <div class="bottom-box">
+            <div class="submit" style="background: #fff;">
+              <el-button type="text" size="small" id="cancelBtn"> {{$t('Cancel')}} </el-button>
+              <el-button type="primary" size="small" round :loading="spinnerLoading" @click="ok()" :disabled="isDetails">{{spinnerLoading ? 'Loading...' : $t('Confirm add')}} </el-button>
+            </div>
+          </div>
+        </div></el-tab-pane>
+    </el-tabs>
 </template>
 <script>
   import _ from 'lodash'
@@ -395,7 +403,8 @@
         // preTasks
         preTaskIdsInWorkflow: [],
         preTasksToAdd: [], // pre-taskIds to add, used in jsplumb connects
-        preTasksToDelete: [] // pre-taskIds to delete, used in jsplumb connects
+        preTasksToDelete: [], // pre-taskIds to delete, used in jsplumb connects
+        activeName: 'first'
       }
     },
     /**
@@ -842,4 +851,7 @@
       background-color: #6F8391
     }
   }
+   .el-tabs__item:focus.is-active.is-focus:not(:active) {
+           box-shadow: none;
+     }
 </style>
