@@ -320,7 +320,7 @@ const tasksType = {
   SERVICEPUBLISH: {
     desc: 'SERVICEPUBLISH',
     color: '#06a125',
-    iconname: '发布服务'
+    iconname: '服务发布'
   }
 }
 
