@@ -681,6 +681,8 @@ export default {
   'mdbfiled is repeat': 'db字段有重复',
   queryCount: '查询条数',
   SingleCount: '单条',
-  AllCount: '全部'
+  AllCount: '全部',
+  'Basic settings': '基础设置',
+  'Advanced configuration': '高级配置'
 
 }
