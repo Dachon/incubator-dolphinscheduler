@@ -272,7 +272,7 @@ const tasksType = {
   SQL: {
     desc: 'SQL',
     color: '#7A98A1',
-    iconname:'数据源'
+    iconname: 'SQL'
   },
   // SPARK: {
   //   desc: 'SPARK',
@@ -297,12 +297,12 @@ const tasksType = {
   HTTP: {
     desc: 'HTTP',
     color: '#E46F13',
-    iconname:'HTTP请求'
+    iconname: 'HTTP'
   },
   DATAX: {
     desc: 'DataX',
     color: '#1fc747',
-    iconname:'DATAX数据源'
+    iconname: 'DataX'
   },
   // SQOOP: {
   //   desc: 'SQOOP',
@@ -315,12 +315,12 @@ const tasksType = {
   COLLECTDATA: {
     desc: 'COLLECTDATA',
     color: '#06a125',
-    iconname:'收集数据'
+    iconname: '收集数据'
   },
-  PUBLISHINFO: {
-    desc: 'PUBLISHINFO',
+  SERVICEPUBLISH: {
+    desc: 'SERVICEPUBLISH',
     color: '#06a125',
-    iconname:'发布服务'
+    iconname: '发布服务'
   }
 }
 
