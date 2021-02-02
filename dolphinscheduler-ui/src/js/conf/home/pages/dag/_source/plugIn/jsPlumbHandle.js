@@ -149,8 +149,8 @@ JSP.prototype.draggable = function () {
     $('#canvas').droppable({
       scope: 'plant',
       drop: function (ev, ui) {
-        let id = 'tasks-' + Math.ceil(Math.random() * 100000) // eslint-disable-line
-
+        // let id = 'tasks-' + Math.ceil(Math.random() * 100000) // eslint-disable-line
+        let id = 'uniwill-' + Math.ceil(Math.random() * 100000)
         let scale = computeScale($(this))
         scale = scale || 1
 
