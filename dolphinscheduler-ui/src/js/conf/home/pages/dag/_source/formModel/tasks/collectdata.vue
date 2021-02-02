@@ -15,16 +15,16 @@
       <div slot="text">{{$t('SQL Type')}}</div>
       <div slot="content">
         <div style="display: inline-block;">
-          <m-sql-type
+         <!-- <m-sql-type
                   @on-sqlType="_onSqlType"
                   :sql-type="sqlType">
-          </m-sql-type>
-        </div>
-        <div v-if="sqlType==0" style="display: inline-block;padding-left: 10px;margin-top: 2px;">
-          <el-checkbox-group v-model="showType" size="small">
-            <el-checkbox :label="'TABLE'" :disabled="isDetails">{{$t('TableMode')}}</el-checkbox>
-            <el-checkbox :label="'ATTACHMENT'" :disabled="isDetails">{{$t('Attachment')}}</el-checkbox>
-          </el-checkbox-group>
+          </m-sql-type> -->
+          <el-select
+                  v-model="sqlType"
+                  :disabled="true"
+                  style="width: 160px;"
+                  size="small">
+          </el-select>
         </div>
       </div>
     </m-list-box>
@@ -41,17 +41,6 @@
             <em class="el-icon-full-screen" @click="setEditorVal"></em>
           </a>
         </div>
-      </div>
-    </m-list-box>
-    <m-list-box>
-      <div slot="text">{{$t('MongoDB')}}</div>
-      <div slot="content">
-       <el-input
-         type="textarea"
-         size="small"
-         v-model="mdbtablename"
-         :placeholder="$t('MongoDB TableName')">
-       </el-input>
       </div>
     </m-list-box>
     <el-dialog
@@ -71,7 +60,6 @@
   import codemirror from '@/conf/home/pages/resource/pages/file/pages/_source/codemirror'
   import mScriptBox from './_source/scriptBox'
   import mDatasource from './_source/datasource'
-  import mSqlType from './_source/sqlType'
   let editor
 
   export default {
@@ -86,11 +74,7 @@
         rtDatasource: '',
         // Sql statement
         type: '',
-        // 数据存入的 mdbtablename表名
-        mdbtablename: '',
-        // Form/attachment
-        showType: ['TABLE'],
-        sqlType: '0',
+        sqlType: '查询',
         // Email title
         item: '',
         scriptBoxDialog: false
@@ -123,19 +107,8 @@
           return false
         }
 
-        if (this.sqlType === 0 && !this.showType.length) {
-          this.$message.warning(`${i18n.$t('One form or attachment must be selected')}`)
-          return false
-        }
-        // DB必填
-        if (!this.mdbtablename) {
-          this.$message.warning(`${i18n.$t('Table name is required')}`)
-          return false
-        }
-
         this.$emit('on-params', {
           sql: editor.getValue(),
-          mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
           sqlType: this.sqlType,
           type: this.type
@@ -182,15 +155,6 @@
 
         return editor
       },
-      /**
-       * return sqlType
-       */
-      _onSqlType (a) {
-        this.sqlType = a
-        if (a === 0) {
-          this.showType = ['TABLE']
-        }
-      },
       _getReceiver () {
         let param = {}
         let current = this.router.history.current
@@ -203,7 +167,6 @@
       _cacheParams () {
         this.$emit('on-cache-params', {
           sql: editor ? editor.getValue() : '',
-          mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
           sqlType: this.sqlType,
           type: this.type
@@ -218,12 +181,6 @@
       }
     },
     watch: {
-      // Listening to sqlType
-      sqlType (val) {
-        if (val === 0) {
-          this.showType = []
-        }
-      },
       // Watch the cacheParams
       cacheParams (val) {
         this._cacheParams()
@@ -236,7 +193,6 @@
       if (!_.isEmpty(o)) {
         // backfill
         this.sql = o.params.sql || ''
-        this.mdbtablename = o.params.mdbtablename || ''
         this.datasource = o.params.datasource || ''
         this.sqlType = o.params.sqlType || ''
         this.type = o.params.type || ''
@@ -265,7 +221,6 @@
     computed: {
       cacheParams () {
         return {
-          mdbtablename: this.mdbtablename,
           datasource: this.rtDatasource,
           sqlType: this.sqlType,
           sql: this.sql,
@@ -273,6 +228,6 @@
         }
       }
     },
-    components: { mListBox, mScriptBox, mDatasource, mSqlType }
+    components: { mListBox, mScriptBox, mDatasource }
   }
 </script>
