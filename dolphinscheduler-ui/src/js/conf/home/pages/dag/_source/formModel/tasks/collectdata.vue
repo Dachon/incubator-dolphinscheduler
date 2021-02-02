@@ -75,6 +75,7 @@
         // Sql statement
         type: '',
         sqlType: '查询',
+        sqlTypeValue: '0',
         // Email title
         item: '',
         scriptBoxDialog: false
@@ -110,7 +111,7 @@
         this.$emit('on-params', {
           sql: editor.getValue(),
           datasource: this.rtDatasource,
-          sqlType: this.sqlType,
+          sqlType: this.sqlTypeValue,
           type: this.type
         })
         return true
@@ -168,7 +169,7 @@
         this.$emit('on-cache-params', {
           sql: editor ? editor.getValue() : '',
           datasource: this.rtDatasource,
-          sqlType: this.sqlType,
+          sqlType: this.sqlTypeValue,
           type: this.type
         })
       },
@@ -194,7 +195,7 @@
         // backfill
         this.sql = o.params.sql || ''
         this.datasource = o.params.datasource || ''
-        this.sqlType = o.params.sqlType || ''
+        this.sqlType = o.params.sqlTypeValue || ''
         this.type = o.params.type || ''
       }
       // read tasks from cache
@@ -222,7 +223,7 @@
       cacheParams () {
         return {
           datasource: this.rtDatasource,
-          sqlType: this.sqlType,
+          sqlType: this.sqlTypeValue,
           sql: this.sql,
           type: this.type
         }
