@@ -179,12 +179,12 @@
               @on-params="_onParams"
               :backfill-item="backfillItem"
               ></m-collect-data>
-              <!-- 加入PublichInfo组件-->
-              <m-publish-info v-if="nodeData.taskType === 'SERVICEPUBLISH'"
+              <!-- 加入ServicePublish组件-->
+              <m-service-publish v-if="nodeData.taskType === 'SERVICEPUBLISH'"
               ref="SERVICEPUBLISH"
               @on-params="_onParams"
               :backfill-item="backfillItem">
-              </m-publish-info>
+              </m-service-publish>
               <!-- Pre-tasks in workflow -->
               <m-pre-tasks
                 v-if="['SHELL', 'SUB_PROCESS'].indexOf(nodeData.taskType) > -1"
@@ -342,7 +342,7 @@
   import { isNameExDag, rtBantpl } from './../plugIn/util'
   import mPriority from '@/module/components/priority/priority'
   import mCollectData from './tasks/collectdata.vue'
-  import mPublishInfo from './tasks/publishinfo.vue'
+  import mServicePublish from './tasks/servicepublish.vue'
   export default {
     name: 'form-model',
     data () {
@@ -839,7 +839,7 @@
       mWorkerGroups,
       mPreTasks,
       mCollectData,
-      mPublishInfo
+      mServicePublish
     }
   }
 </script>
