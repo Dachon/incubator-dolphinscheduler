@@ -7,7 +7,7 @@
        <el-input
          type="input"
          size="small"
-         v-model="servename"
+         v-model="serviceName"
          :placeholder="$t('ServeName(required)')">
        </el-input>
       </div>
@@ -27,7 +27,7 @@
         sql: '',
         // Sql statement
         // 关系表存入的服务名
-        servename: '',
+        serviceName: '',
         // 三方调用服务时返回的数据条数
         item: ''
       }
@@ -44,7 +44,7 @@
       _verification () {
         // storage
         this.$emit('on-params', {
-          servename: this.servename
+          serviceName: this.serviceName
         })
         return true
       },
@@ -59,7 +59,7 @@
       },
       _cacheParams () {
         this.$emit('on-cache-params', {
-          servename: this.servename
+          serviceName: this.serviceName
         })
       }
     },
@@ -74,7 +74,7 @@
 
       // Non-null objects represent backfill
       if (!_.isEmpty(o)) {
-        this.servename = o.params.servename || ''
+        this.serviceName = o.params.serviceName || ''
       }
       // read tasks from cache
       if (!_.some(this.store.state.dag.cacheTasks, { id: this.createNodeId }) &&
@@ -91,7 +91,7 @@
     computed: {
       cacheParams () {
         return {
-          servename: this.servename
+          serviceName: this.serviceName
         }
       }
     },
