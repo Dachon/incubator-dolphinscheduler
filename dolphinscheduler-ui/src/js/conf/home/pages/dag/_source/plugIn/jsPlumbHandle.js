@@ -149,8 +149,8 @@ JSP.prototype.draggable = function () {
     $('#canvas').droppable({
       scope: 'plant',
       drop: function (ev, ui) {
-        // let id = 'tasks-' + Math.ceil(Math.random() * 100000) // eslint-disable-line
-        let id = 'uniwill-' + Math.ceil(Math.random() * 100000)
+        let id = 'tasks-' + Math.ceil(Math.random() * 100000) // eslint-disable-line
+        // let id = 'uniwill-' + Math.ceil(Math.random() * 100000)
         let scale = computeScale($(this))
         scale = scale || 1
 
@@ -606,17 +606,20 @@ JSP.prototype.saveStore = function () {
     _.map(_.cloneDeep(store.state.dag.tasks), v => {
       if (is(v.id)) {
         const preTasks = []
+        const preTasksId = []
         const id = $(`#${v.id}`)
         const tar = id.attr('data-targetarr')
         const idDep = tar ? id.attr('data-targetarr').split(',') : []
         if (idDep.length) {
           _.map(idDep, v1 => {
+            preTasksId.push(v1)
             preTasks.push($(`#${v1}`).find('.name-p').text())
           })
         }
 
         let tasksParam = _.assign(v, {
-          preTasks: preTasks
+          preTasks: preTasks,
+          preTasksId:preTasksId
         })
 
         // Sub-workflow has no retries and interval
