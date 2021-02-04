@@ -290,10 +290,11 @@ const tasksType = {
   //   desc: 'PYTHON',
   //   color: '#FED52D'
   // },
-  // DEPENDENT: {
-  //   desc: 'DEPENDENT',
-  //   color: '#2FBFD8'
-  // },
+  DEPENDENT: {
+    desc: 'DEPENDENT',
+    color: '#2FBFD8',
+    iconname: 'DEPENDENT'
+  },
   HTTP: {
     desc: 'HTTP',
     color: '#E46F13',
