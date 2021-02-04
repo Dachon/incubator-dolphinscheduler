@@ -401,7 +401,8 @@
         width: 180px;
         height: 46px;
         display: block;
-        background: url("./uniwill.svg") no-repeat;
+        // background: url("./logo.svg") no-repeat;
+        background: url("./uniwill-1.png") no-repeat;
       }
     }
     .nav-box {
