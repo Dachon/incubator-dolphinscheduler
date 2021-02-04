@@ -161,10 +161,10 @@
       padding-top: 30px;
       margin-bottom: -6px;
       a {
-        width: 280px;
+        width: 300px;
         height: 60px;
         display: block;
-        background: url("img/uniwill-logo.svg") no-repeat 23px;
+        background: url("img/uniwill-login.png") no-repeat 0px;
         // background: url("img/login-logo.svg") no-repeat 23px;
         margin: 0 auto;
       }
