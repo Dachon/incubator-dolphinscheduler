@@ -327,6 +327,12 @@
         } else {
           Dag.create()
         }
+        if (this.router.currentRoute.query._t) {
+          let query = this.router.currentRoute.query._t.split('|')
+          if (query[0] === 'el-icon-minus') {
+            this.toolOperList[4].icon = 'el-icon-minus'
+          }
+        }
       },
       /**
        * copy name
@@ -466,7 +472,8 @@
                   if (this.type === 'instance') {
                     this.$router.push({ path: `/projects/instance/list/${this.urlParam.id}?_t=${new Date().getTime()}` })
                   } else {
-                    this.$router.push({ path: `/projects/definition/list/${this.urlParam.id}?_t=${new Date().getTime()}` })
+                    // this.$router.push({ path: `/projects/definition/list/${this.urlParam.id}?_t=${new Date().getTime()}` })
+                    this.$router.push({ path: `/projects/definition/list/${this.urlParam.id}?_t=${this.toolOperList[4].icon}|${new Date().getTime()}` })
                   }
                   resolve()
                 }).catch(e => {
@@ -503,6 +510,8 @@
         } else {
           this.$router.push({ name: 'projects-instance-list' })
         }
+        const $mainLayoutModel = $('.main-layout-model')
+        $mainLayoutModel.removeClass('dag-screen')
       },
       _verifConditions (value) {
         let tasks = value
