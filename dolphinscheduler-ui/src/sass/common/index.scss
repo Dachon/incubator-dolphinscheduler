@@ -103,7 +103,7 @@ body{
   .main-layout-model {
     &.dag-screen {
       .m-bottom {
-        z-index: 2;
+        z-index: 3000;
       }
       .index-model {
         width: 100%;
@@ -359,7 +359,3 @@ body::-webkit-scrollbar-thumb {
   max-height: 200px;
   overflow: auto;
 }
-
-
-
-
