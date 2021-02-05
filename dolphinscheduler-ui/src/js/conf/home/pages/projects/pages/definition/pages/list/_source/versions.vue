@@ -139,9 +139,11 @@
        * Paging event of process definition versions
        */
       _mVersionGetProcessDefinitionVersionsPage (val) {
+        debugger
         this.$emit('mVersionGetProcessDefinitionVersionsPage', {
           pageNo: val,
-          pageSize: this.pageSize,
+          pageSize: 10,
+          // pageSize: this.pageSize,
           processDefinitionId: this.versionData.processDefinition.id,
           fromThis: this
         })
