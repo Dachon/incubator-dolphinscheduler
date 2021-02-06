@@ -499,7 +499,6 @@ JSP.prototype.removeConnect = function ($connect) {
     $(`#${sourceId}`).attr('data-nodenumber', Number($(`#${sourceId}`).attr('data-nodenumber')) - 1)
   }
   this.JspInstance.deleteConnection($connect)
-
   this.selectedElement = {}
 }
 
@@ -656,6 +655,21 @@ JSP.prototype.saveStore = function () {
           endPointSourceId: v.sourceId,
           endPointTargetId: v.targetId,
           label: v._jsPlumb.overlays.label.canvas.innerText
+        })
+      })
+    } else if (store.state.dag.connects.length > 0 && store.state.dag.connects.length > this.JspInstance.getConnections().length) {
+      _.map(this.JspInstance.getConnections(), v => {
+        connects.push({
+          endPointSourceId: v.sourceId,
+          endPointTargetId: v.targetId,
+          label: v._jsPlumb.overlays.label.canvas.innerText
+        })
+      })
+      _.map(store.state.dag.connects, u => {
+        _.map(connects, v => {
+          if (u.label && u.endPointSourceId === v.endPointSourceId && u.endPointTargetId === v.endPointTargetId) {
+            v.label = u.label
+          }
         })
       })
     }
