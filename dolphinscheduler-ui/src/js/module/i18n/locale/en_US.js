@@ -681,5 +681,7 @@ export default {
   'mdbfiled is repeat': 'mdbfiled is repeat',
   queryCount: 'queryCount',
   SingleCount: 'SingleCount',
-  AllCount: 'All'
+  AllCount: 'All',
+  'Basic settings': 'Basic settings',
+  'Advanced configuration': 'Advanced configuration'
 }
