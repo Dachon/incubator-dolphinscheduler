@@ -253,75 +253,101 @@ const tasksState = {
  * @color color (tree and gantt)
  */
 const tasksType = {
-  // SHELL: {
-  //   desc: 'SHELL',
-  //   color: '#646464'
-  // },
-  // WATERDROP: {
-  //   desc: 'WATERDROP',
-  //   color: '#646465'
-  // },
-  // SUB_PROCESS: {
-  //   desc: 'SUB_PROCESS',
-  //   color: '#0097e0'
-  // },
-  // PROCEDURE: {
-  //   desc: 'PROCEDURE',
-  //   color: '#525CCD'
-  // },
+  SHELL: {
+    desc: 'SHELL',
+    color: '#646464',
+    iconname: 'SHELL',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  WATERDROP: {
+    desc: 'WATERDROP',
+    color: '#646465',
+    iconname: 'WATERDROP',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  SUB_PROCESS: {
+    desc: 'SUB_PROCESS',
+    color: '#0097e0',
+    iconname: 'SUB_PROCESS',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  PROCEDURE: {
+    desc: 'PROCEDURE',
+    color: '#525CCD',
+    iconname: 'PROCEDURE',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
   SQL: {
     desc: 'SQL',
     color: '#7A98A1',
-    iconname: 'SQL'
+    iconname: 'SQL',
+    tooltype: `${i18n.$t('Advanced components')}`
   },
-  // SPARK: {
-  //   desc: 'SPARK',
-  //   color: '#E46F13'
-  // },
-  // FLINK: {
-  //   desc: 'FLINK',
-  //   color: '#E46F13'
-  // },
-  // MR: {
-  //   desc: 'MapReduce',
-  //   color: '#A0A5CC'
-  // },
-  // PYTHON: {
-  //   desc: 'PYTHON',
-  //   color: '#FED52D'
-  // },
+  SPARK: {
+    desc: 'SPARK',
+    color: '#E46F13',
+    iconname: 'SPARK',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  FLINK: {
+    desc: 'FLINK',
+    color: '#E46F13',
+    iconname: 'FLINK',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  MR: {
+    desc: 'MapReduce',
+    color: '#A0A5CC',
+    iconname: 'MapReduce',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  PYTHON: {
+    desc: 'PYTHON',
+    color: '#FED52D',
+    iconname: 'PYTHON',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
   DEPENDENT: {
     desc: 'DEPENDENT',
     color: '#2FBFD8',
-    iconname: 'DEPENDENT'
+    iconname: 'DEPENDENT',
+    tooltype: `${i18n.$t('Advanced components')}`
   },
   HTTP: {
     desc: 'HTTP',
     color: '#E46F13',
-    iconname: 'HTTP'
+    iconname: 'HTTP',
+    tooltype: `${i18n.$t('Advanced components')}`
   },
   DATAX: {
     desc: 'DataX',
     color: '#1fc747',
-    iconname: 'DataX'
+    iconname: 'DataX',
+    tooltype: `${i18n.$t('Advanced components')}`
   },
-  // SQOOP: {
-  //   desc: 'SQOOP',
-  //   color: '#E46F13'
-  // },
-  // CONDITIONS: {
-  //   desc: 'CONDITIONS',
-  //   color: '#E46F13'
-  // },
+  SQOOP: {
+    desc: 'SQOOP',
+    color: '#E46F13',
+    iconname: 'SQOOP',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
+  CONDITIONS: {
+    desc: 'CONDITIONS',
+    color: '#E46F13',
+    iconname: 'CONDITIONS',
+    tooltype: `${i18n.$t('Advanced components')}`
+  },
   COLLECTDATA: {
     desc: 'COLLECTDATA',
     color: '#06a125',
-    iconname: '收集数据'
+    iconname: `${i18n.$t('collecting data')}`,
+    tooltype: `${i18n.$t('Basic components')}`
   },
   SERVICEPUBLISH: {
     desc: 'SERVICEPUBLISH',
     color: '#06a125',
-    iconname: '服务发布'
+    iconname: `${i18n.$t('service release')}`,
+    tooltype: `${i18n.$t('Basic components')}`
   }
 }
 
