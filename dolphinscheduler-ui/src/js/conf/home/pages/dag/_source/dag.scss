@@ -74,9 +74,9 @@
   .icon-names{
     position: absolute;
     white-space: nowrap;
-    margin-left: -11px;
+    margin-left: -25px;
     font-size: 5px;
-    width: 60px;
+    width: 90px;
   }
   .icos-SHELL {
     background: url("../img/toolbar_SHELL.png") no-repeat 50% 50%;
@@ -127,7 +127,7 @@
     background: url("../img/toolbar_SERVICEPUBLISH.png") no-repeat 50% 50%;
   }
   .toolbar {
-    width: 60px;
+    width: 90px;
     height: 100%;
     background: #F2F3F7;
     float: left;
@@ -146,7 +146,7 @@
     }
     .toolbar-btn {
       overflow: hidden;
-      padding: 8px 11px 0 11px;
+      padding: 8px 25px 0 25px;
       .bar-box {
         width: 40px;
         height: 36px;
@@ -175,7 +175,7 @@
   }
   .dag-contect {
     float: left;
-    width: calc(100% - 60px);
+    width: calc(100% - 90px);
     height: 100%;
     .dag-toolbar {
       height: 40px;
@@ -579,4 +579,18 @@ svg path:hover {
 .ans-modal-box.ans-drawer.ans-drawer-right.dagMask.mask {
     width: 628px;
     left: auto;
+}
+.el-popper[x-placement^=bottom]{
+  margin-top: 5px;
+}
+.el-dropdown-menu{
+  padding: 0px;
+}
+
+.el-dropdown-menu__item{
+  padding: 0px 16px 0px 16px;
+
+}
+.el-dropdown-menu__item:not(.is-disabled):hover{
+   background-color: #606266;
 }
