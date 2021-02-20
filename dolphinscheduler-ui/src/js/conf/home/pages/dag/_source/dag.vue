@@ -1,9 +1,18 @@
 <template>
   <div class="clearfix dag-model" >
     <div class="toolbar">
-      <div class="title"><span>{{$t('Toolbar')}}</span></div>
+      <div class="title">
+        <!-- <span>{{$t('Toolbar')}}</span> -->
+        <el-dropdown class="droptool"  @command="_switchOperation">
+          <span class="el-icon-caret-bottom">{{$t('Toolbar')}}</span>
+            <el-dropdown-menu style="width:90px ;" slot="dropdown" :append-to-body="false" ref="mydropd">
+              <el-dropdown-item :command="beforeHandleCommand('Basic')">{{$t('Basic components')}}</el-dropdown-item>
+              <el-dropdown-item :command="beforeHandleCommand('Advanced')">{{$t('Advanced components')}}</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+      </div>
       <div class="toolbar-btn">
-        <div class="bar-box roundedRect jtk-draggable jtk-droppable jtk-endpoint-anchor jtk-connected"
+        <div class="bar-box roundedRect jtk-draggable jtk-droppable jtk-endpoint-anchor jtk-connected ui-draggable ui-draggable-handle"
              :class="v === dagBarId ? 'active' : ''"
              :id="v"
              :key="v"
@@ -13,7 +22,7 @@
           <div data-toggle="tooltip" :title="item.desc">
             <div class="icos" :class="'icos-' + v" ></div>
           </div>
-          <div class="icon-names">
+          <div class="icon-names" >
             <div style="text-align: center;">{{item.iconname}}</div>
           </div>
         </div>
@@ -200,6 +209,7 @@
     data () {
       return {
         tasksTypeList: tasksType,
+        tasksType: tasksType,
         toolOperList: toolOper(this),
         dagBarId: null,
         toolOperCode: '',
@@ -696,7 +706,6 @@
         this.nodeData.preNode = preNode
         this.nodeData.rearList = rearList
         this.nodeData.instanceId = this.$route.params.id
-
         this.nodeDrawer = true
       },
       removeEventModelById ($id) {
@@ -800,6 +809,31 @@
 
       closeVersion () {
         this.drawer = false
+      },
+
+      beforeHandleCommand (type) {
+        return {
+          type: type
+        }
+      },
+      // 工具栏下拉列表选择事件
+      _switchOperation (event) {
+        this.tasksTypeList = {}
+        if (event.type === 'Basic') {
+          for (let key in this.tasksType) {
+            if (this.tasksType[key].tooltype === '基础组件' || this.tasksType[key].tooltype === 'Basicomp') {
+              this.$set(this.tasksTypeList, key, this.tasksType[key])
+            }
+          }
+        } else if (event.type === 'Advanced') {
+          for (let key in this.tasksType) {
+            if (this.tasksType[key].tooltype === '高级组件' || this.tasksType[key].tooltype === 'Advancedcomp') {
+              this.$set(this.tasksTypeList, key, this.tasksType[key])
+            }
+          }
+        }
+        // Dag.createtool()
+        setTimeout(Dag.createtool(), 3000)
       }
     },
     watch: {
@@ -809,6 +843,12 @@
           // Edit state does not allow deletion of node a...
           this.setIsEditDag(true)
         }
+      },
+      // 监听tasksTypeList 在组件加载完后，重新赋上可以拖拽的属性
+      tasksTypeList: function () {
+        this.$nextTick(function () {
+          Dag.createtool()
+        })
       }
     },
     created () {
@@ -846,6 +886,7 @@
           ConnectionsDetachable: true
         })
       })
+      this._switchOperation({ type: 'Basic' })
     },
     mounted () {
       this.init(this.arg)
