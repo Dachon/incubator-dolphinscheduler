@@ -192,4 +192,12 @@ Dag.prototype.saveStore = function () {
   return JSP.saveStore()
 }
 
+/**
+ * tool create dag
+ */
+Dag.prototype.createtool = function () {
+  // 对工具栏组件进行初始化
+  JSP.draggable()
+}
+
 export default new Dag()
