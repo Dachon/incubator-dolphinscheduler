@@ -2,14 +2,19 @@
   <div class="clearfix dag-model" >
     <div class="toolbar">
       <div class="title">
-        <!-- <span>{{$t('Toolbar')}}</span> -->
-        <el-dropdown class="droptool"  @command="_switchOperation">
-          <span class="el-icon-caret-bottom">{{$t('Toolbar')}}</span>
+        <div class="Basicdiv">
+          <el-button id="Basicbtn" v-bind:icon="Basicicon" class="titlebtn toolbtnicon" style="width: 100%;" @click="_switchOperation({ type: 'Basic' })">{{$t('Basic components')}}</el-button>
+        </div>
+        <div class="Advancediv">
+          <el-button id="Advancebtn" v-bind:icon="Advancicon" class="titlebtn toolbtnicon" style="width: 100%;" @click="_switchOperation({ type: 'Advanced' })">{{$t('Advanced components')}}</el-button>
+        </div>
+       <!-- <el-dropdown class="droptool"  @command="_switchOperation">
+           <span class="el-icon-caret-bottom">{{$t('Toolbar')}}</span>
             <el-dropdown-menu style="width:90px ;" slot="dropdown" :append-to-body="false" ref="mydropd">
               <el-dropdown-item :command="beforeHandleCommand('Basic')">{{$t('Basic components')}}</el-dropdown-item>
               <el-dropdown-item :command="beforeHandleCommand('Advanced')">{{$t('Advanced components')}}</el-dropdown-item>
             </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
       </div>
       <div class="toolbar-btn">
         <div class="bar-box roundedRect jtk-draggable jtk-droppable jtk-endpoint-anchor jtk-connected ui-draggable ui-draggable-handle"
@@ -254,7 +259,9 @@
         startDialog: false,
         startData: {},
         startNodeList: '',
-        sourceType: ''
+        sourceType: '',
+        Advancicon: 'el-icon-caret-top',
+        Basicicon: 'el-icon-caret-bottom'
       }
     },
     mixins: [disabledState],
@@ -820,20 +827,50 @@
       _switchOperation (event) {
         this.tasksTypeList = {}
         if (event.type === 'Basic') {
-          for (let key in this.tasksType) {
-            if (this.tasksType[key].tooltype === '基础组件' || this.tasksType[key].tooltype === 'Basicomp') {
-              this.$set(this.tasksTypeList, key, this.tasksType[key])
+          this.Advancicon = 'el-icon-caret-top'
+          if (this.Basicicon === 'el-icon-caret-top') {
+            this.Basicicon = 'el-icon-caret-bottom'
+            for (let key in this.tasksType) {
+              if (this.tasksType[key].tooltype === '基础组件' || this.tasksType[key].tooltype === 'Basicomp') {
+                this.$set(this.tasksTypeList, key, this.tasksType[key])
+              }
             }
+            $('#Advancebtn').removeClass('toolbtnact')
+            $('#Basicbtn').addClass('toolbtnact')
+            $('.Basicdiv').append($('.toolbar-btn'))
+          } else {
+            this.Basicicon = 'el-icon-caret-top'
+            $('.Basicdiv').remove($('.toolbar-btn'))
           }
         } else if (event.type === 'Advanced') {
-          for (let key in this.tasksType) {
-            if (this.tasksType[key].tooltype === '高级组件' || this.tasksType[key].tooltype === 'Advancedcomp') {
-              this.$set(this.tasksTypeList, key, this.tasksType[key])
+          this.Basicicon = 'el-icon-caret-top'
+          if (this.Advancicon === 'el-icon-caret-bottom') {
+            this.Advancicon = 'el-icon-caret-top'
+            $('.Advancediv').remove($('.toolbar-btn'))
+          } else {
+            this.Advancicon = 'el-icon-caret-bottom'
+            for (let key in this.tasksType) {
+              if (this.tasksType[key].tooltype === '高级组件' || this.tasksType[key].tooltype === 'Advancedcomp') {
+                this.$set(this.tasksTypeList, key, this.tasksType[key])
+              }
             }
+            $('#Basicbtn').removeClass('toolbtnact')
+            $('#Advancebtn').addClass('toolbtnact')
+            $('.Advancediv').append($('.toolbar-btn'))
           }
         }
         // Dag.createtool()
         setTimeout(Dag.createtool(), 3000)
+      },
+      toolbarinit () {
+        this.tasksTypeList = {}
+        for (let key in this.tasksType) {
+          if (this.tasksType[key].tooltype === '基础组件' || this.tasksType[key].tooltype === 'Basicomp') {
+            this.$set(this.tasksTypeList, key, this.tasksType[key])
+          }
+        }
+        $('#Basicbtn').addClass('toolbtnact')
+        $('.Basicdiv').append($('.toolbar-btn'))
       }
     },
     watch: {
@@ -886,7 +923,9 @@
           ConnectionsDetachable: true
         })
       })
-      this._switchOperation({ type: 'Basic' })
+      this.$nextTick(function () {
+        this.toolbarinit()
+      })
     },
     mounted () {
       this.init(this.arg)
