@@ -133,12 +133,12 @@
     float: left;
     border-radius: 0 0 0 3px;
     .title {
-      height: 40px;
-      line-height: 40px;
-      background: #40434C;
+      height: 80px;
+      // line-height: 40px;
       text-align: center;
       border-radius: 3px 0 0 0;
-      span {
+      .titlebtn {
+        background: #40434C;
         font-size: 14px;
         color: #fff;
         font-weight: bold;
@@ -146,7 +146,7 @@
     }
     .toolbar-btn {
       overflow: hidden;
-      padding: 8px 25px 0 25px;
+      padding: 0px 25px 0 25px;
       .bar-box {
         width: 40px;
         height: 36px;
@@ -583,19 +583,16 @@ svg path:hover {
 .el-popper[x-placement^=bottom]{
   margin-top: 5px;
 }
-.el-dropdown-menu{
-  padding: 0px;
-}
 
-.el-dropdown-menu__item{
-  padding: 0px 16px 0px 16px;
-
-}
-.el-dropdown-menu__item:not(.is-disabled):hover{
-   background-color: #606266;
-}
 
 .droptool{
   width: 80px;
   margin-left: 8px;
+}
+
+.toolbtnact{
+  color: #0097e0 !important;  
+}
+.toolbtnicon{
+  padding: 12px 5px 12px 5px !important;
 }
