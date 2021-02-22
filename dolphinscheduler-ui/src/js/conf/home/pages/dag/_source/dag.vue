@@ -8,13 +8,6 @@
         <div class="Advancediv">
           <el-button id="Advancebtn" v-bind:icon="Advancicon" class="titlebtn toolbtnicon" style="width: 100%;" @click="_switchOperation({ type: 'Advanced' })">{{$t('Advanced components')}}</el-button>
         </div>
-       <!-- <el-dropdown class="droptool"  @command="_switchOperation">
-           <span class="el-icon-caret-bottom">{{$t('Toolbar')}}</span>
-            <el-dropdown-menu style="width:90px ;" slot="dropdown" :append-to-body="false" ref="mydropd">
-              <el-dropdown-item :command="beforeHandleCommand('Basic')">{{$t('Basic components')}}</el-dropdown-item>
-              <el-dropdown-item :command="beforeHandleCommand('Advanced')">{{$t('Advanced components')}}</el-dropdown-item>
-            </el-dropdown-menu>
-        </el-dropdown> -->
       </div>
       <div class="toolbar-btn">
         <div class="bar-box roundedRect jtk-draggable jtk-droppable jtk-endpoint-anchor jtk-connected ui-draggable ui-draggable-handle"
@@ -932,7 +925,6 @@
     },
     beforeDestroy () {
       this.resetParams()
-
       // Destroy round robin
       clearInterval(this.setIntervalP)
     },
