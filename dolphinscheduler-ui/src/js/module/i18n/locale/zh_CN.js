@@ -683,6 +683,10 @@ export default {
   SingleCount: '单条',
   AllCount: '全部',
   'Basic settings': '基础设置',
-  'Advanced configuration': '高级配置'
+  'Advanced configuration': '高级配置',
+  'collecting data': '收集数据',
+  'service release': '服务发布',
+  'Basic components': '基础组件',
+  'Advanced components': '高级组件'
 
 }
