@@ -145,7 +145,6 @@ JSP.prototype.draggable = function () {
         $('body').find('.tooltip.fade.top.in').remove()
       }
     })
-
     $('#canvas').droppable({
       scope: 'plant',
       drop: function (ev, ui) {
